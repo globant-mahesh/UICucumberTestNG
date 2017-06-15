@@ -1,0 +1,24 @@
+<suite name="factorySuite" verbose="1">
+    <!--group-by-instances will execute test methods sequentially (not preferable for parallelism)-->
+    <test name="factoryTest" time-out="120000" group-by-instances="true" parallel = "classes" thread-count = "2">
+        <groups>
+            <define><group></group></define>
+            <dependencies></dependencies>
+            <run>
+                <exclude name="(depend)\w+(-)\w+"></exclude>
+            </run>
+        </groups>
+        <packages>
+            <package name="com.phptravels.framework.(page)\w+">
+                <include name="com.phptravels.framework.pageobjects"></include>
+            </package>
+        </packages>
+        <classes>
+            <class name="com.phptravels.framework.testsuite.factory.Factory">
+                <methods>
+                    <exclude name="searchFlight"></exclude>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>

@@ -1,0 +1,49 @@
+<suite name="My Suite" verbose="1">
+    <parameter name="location" value="London"></parameter>
+    <!--Note test tag has the timeout attribute-->
+    <test name="First Test" time-out="120000">
+        <groups>
+            <define name="meta-group">
+                <include name="(hom)\w+"></include>
+                <include name="(fli)\w+"></include>
+            </define>
+            <dependencies>
+                <group name="dependent-group" depends-on="depending-group"></group>
+            </dependencies>
+            <run>
+                <!--use of regex http://regexr.com/-->
+                <!--<include name="(hom)\w+"></include>-->
+                <include name="(meta-)\w+"></include>
+                <include name="dependent-group"></include>
+            </run>
+        </groups>
+        <packages>
+            <!--You can use the regex ONLY for the name attr the packages tag-->
+            <package name="com.phptravels.framework.*">
+                <exclude name="com.phptravels.framework.pageobjects"></exclude>
+            </package>
+        </packages>
+
+        <!--Classes have higher priority than packages i.e. inclusion/exclusion of package doe not impact classes-->
+        <classes>
+            <!--class name should always have the package name prefixed to it-->
+            <!--You can not use regex in class name-->
+            <class name="com.phptravels.framework.testsuite.TestNgRunner">
+                <methods>
+                    <!--You can exclude test methods or if you don't choose all test methods will run by default-->
+                    <exclude name="(test.)\w+"></exclude>
+                    <include name="testTwo"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <!--<test name="Second Test" time-out="500">-->
+    <!--<classes>-->
+    <!--<class name="com.phptravels.framework.pageobjects.TestNgRunner">-->
+    <!--<methods>-->
+    <!--<include name="searchPackage"></include>-->
+    <!--</methods>-->
+    <!--</class>-->
+    <!--</classes>-->
+    <!--</test>-->
+</suite>
