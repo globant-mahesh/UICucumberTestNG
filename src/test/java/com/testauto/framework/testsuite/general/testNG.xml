@@ -1,0 +1,19 @@
+<suite name="My Suite" verbose="1">
+    <parameter name="location" value="London"></parameter>
+    <!--Note test tag has the timeout attribute-->
+    <test name="First Test" time-out="120000">
+       her priority than packages i.e. inclusion/exclusion of package doe not impact classes-->
+        <classes>
+            <!--class name should always have the package name prefixed to it-->
+            <!--You can not use regex in class name-->
+            <class name="com.testauto.framework.testsuite.general.Runner">
+                <methods>
+                    <!--You can exclude test methods or if you don't choose all test methods will run by default-->
+                    <!--<exclude name="(test.)\w+"></exclude>-->
+                    <!--<include name="testTwo"></include>-->
+                    <include name="test"></include>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
